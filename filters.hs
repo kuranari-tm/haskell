@@ -1,3 +1,6 @@
+import Data.List
+import Data.Char
+
 filterRaw, filterF :: (a -> Bool) -> [a] -> [a]
 
 filterRaw p (x : xs)
@@ -6,6 +9,11 @@ filterRaw p (x : xs)
 filterRaw _ _ = []
 
 filterF p = foldr ( \x -> if p x then (x :) else id) []
+
+-- filterU p = unfoldr $ \l -> case l of
+--                                                      ↓ リストに追加しないようにしたい
+--         x : xs -> if p x then Just (x, xs) else Just(nil, xs)
+--         _ -> Nothing
 
 partitionRaw, partitionF :: (a -> Bool) -> [a] -> ([a], [a])
 partitionRaw p (x : xs)
